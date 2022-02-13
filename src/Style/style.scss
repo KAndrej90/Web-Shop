@@ -1,0 +1,383 @@
+$base-color:#118dd6;
+$effect-color:orangered;
+$font-color: hsl(209, 23%,40%);
+$shadow:0 5px 20px rgba(0, 0, 0, 0.2);
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+a:hover{
+	color: $effect-color;
+
+}
+
+//NAVBAR//
+nav {
+	background-color: $base-color;
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+	padding: 1em;
+	a {	
+		text-decoration: none;
+		color: white;
+		font-size: 1.4em;
+	};
+	div {
+		display: flex;
+		padding: 0.5em;
+		align-items: center;
+		
+		button{
+			margin-left: 0.3em;
+			background-color: $effect-color;
+			color: white;
+			height: 1.6em;
+			width: 1.5em;
+			border: none;
+			border-radius: 40%;
+			cursor: pointer;
+			font-size: 1em;
+		};
+	};
+};
+
+//ITEM PRODUCTS//
+.card-list{
+	margin-top: 2em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	gap: 1em;
+	color: $font-color;
+		h3{
+			color: black;
+		};
+			.product-name{
+				color: $base-color;
+			};
+}
+
+.card{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 1em;
+	gap: 1em;
+	width: 17em;
+	box-shadow: $shadow;
+		img {
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+			border-radius: 1em;
+		};
+			div{
+				display: flex;
+				justify-content: space-between;
+			};
+			.on-sale{
+				color: red;
+			}
+				button {
+					color: $base-color;
+					margin-right: 0.3em;
+					border: none;
+					background-color: white;
+					cursor: pointer;
+					font-size: large;
+					:hover{
+						color: $effect-color;
+					}
+				};
+};
+
+//BASKET//
+
+.basket-container {
+	display: flex;
+	color:$font-color;
+	flex-wrap: wrap;
+
+	.empty-basket{
+			box-shadow: $shadow;
+			h1{
+				padding: 0.5em;
+			}
+	}
+	.basket {
+		padding: 2em;
+		flex: 1;
+
+		.basket-item { 
+			margin: 0.5em auto;
+			width: 40em;
+			padding: 1em;
+			display: flex;
+			gap:1em;
+			box-shadow:	$shadow;
+			
+			.basket-item-description {
+				width: 25em;
+			};
+			
+			.basket-item-btns {
+				
+				width: 5em;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				
+				button {
+					height: 2em;
+					width: 2em;
+					border: none;
+					border-radius: 50%;
+					cursor: pointer;
+					font-size:larger;
+					background-color: white;
+				};
+				
+				:hover{
+					color: $effect-color;
+				}	
+			};
+			
+			.basket-item-price {
+				color: $base-color;
+				width: 7em;
+				margin-top: 3.5em;
+			};
+			
+		};
+		img{
+			width: 100px;
+			height: 100px;
+			border-radius: 1em;
+		};
+	};
+
+	.hiden {
+		display:none;
+	}
+	.total-price{
+		display: flex;
+		align-items: center;
+		flex: 1;// za media Q <1300 maknuti
+	
+		.price-card{
+			margin: 0 auto;
+			width: 40em;
+			height: 10.5em;
+			padding: 1em;
+			gap:1em;
+			box-shadow: $shadow;
+
+			h3{
+				color: black;
+				padding-top: 0.5em;
+			}
+		};
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 0.4em;
+			margin-bottom: 1em;
+				div{
+					display: flex;
+					align-items: center;
+					gap: 0.5em;
+					margin-left: 1em;
+				}
+				.five-off{
+					margin-left: 0.6em;
+			}
+		};
+
+		.checkout-btn {
+			
+			display: flex;
+			justify-content: center;
+		};
+
+		button{
+			border: none;
+			border-radius: 1em;
+			height: 2em;
+			width: 10em;
+			background-color: $base-color;
+			color: white;
+			cursor: pointer;
+		};
+		button:hover {
+			color: white;
+			background-color: $effect-color;
+		};
+		
+	}
+};
+
+// CHECKOUT//
+
+.checkout-container {
+	box-shadow: $shadow;	
+	width: 30em;
+	margin: 4em auto;
+	
+	form {
+	display: flex;
+	flex-direction: column;
+	padding: 2em;
+	gap:1em;
+	color: $font-color;
+		input{
+			width: 30em;
+			border: none;
+			height: 2em;
+			border-bottom: 1px solid $base-color;
+		};
+		button {
+			border: none;
+			border-radius: 1em;
+			height: 2em;
+			cursor: pointer;
+			background-color: $base-color;
+			color: white;
+		};
+		button:hover {
+			background-color: $effect-color;
+		};
+		.alert-btn{
+			border: none;
+			border-radius: 1em;
+			height: 2em;
+			cursor: pointer;
+			background-color: $base-color;
+			color: white;
+			margin: 0 auto;
+			width: 416px;
+			height: 26.6px;
+			text-align: center;
+			padding-top: 0.1em;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 13.33px;
+		}
+		.alert-btn:hover {
+			background-color: $effect-color;
+		};
+	};
+};
+	
+// ORDER//
+
+.order-container{
+	box-shadow: $shadow;	
+	width: 30em;
+	margin: 4em auto;
+	display: flex;
+	flex-direction: column;
+	color: $font-color;
+	h1{
+		padding-left: 0.3em;
+	}
+	div{
+		padding: 1em;
+		
+	}
+	span{
+		font-size: larger;
+		padding-left: 1em;
+	}
+	img{
+		margin-top: 1em;
+		width: 50px;
+		height: 50px;
+		border-radius: 1em;
+	};
+	button{
+		border: none;
+			border-radius: 1em;
+			height: 2em;
+			cursor: pointer;
+			background-color: $base-color;
+			color: white;
+			margin: 1em 1em;
+		}
+		button:hover {
+			background-color: $effect-color;
+		};
+};
+
+@media (max-width: 768px) {
+
+	.basket-container {
+		display: flex;
+		color:$font-color;
+		flex-wrap: wrap;
+
+		.basket {
+			.basket-item {
+				margin: 0.5em auto;
+				width: 18em;
+				display: flex;
+				flex-direction: column;
+				.basket-item-description {
+				width: 15em;
+				};
+			};
+		};
+
+// PRICE CARD - TOTAL
+
+		.total-price {
+			display: flex;
+			align-items: center;
+			.price-card{
+				width: 18em;
+				height: 23em;
+				display: flex;
+				flex-direction: column;
+			};
+			div{
+				width: 15em;
+			};	
+		};
+	};
+
+// CHECKOUT CARD
+
+.checkout-container {	
+	width: 17em;
+		form {
+			input {
+				width: 17em;
+			};
+		};
+
+	};
+	.checkout-container form .alert-btn{
+		border: none;
+		border-radius: 1em;
+		height: 2em;
+		cursor: pointer;
+		background-color: $base-color;
+		color: white;
+		margin: 0 auto;
+		width: 208px;
+		height: 26.6px;
+		text-align: center;
+		padding-top: 0.1em;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 13.33px;
+	}
+
+//ORDER//
+
+.order-container{	
+	width: 17em;	
+	};
+};
+
