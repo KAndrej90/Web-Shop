@@ -2,6 +2,7 @@ import React from "react";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
+
 export default function Basket({basketItems,onAdd,onRemove,handleSumPrice}) {
 	let navigate = useNavigate();
 	let off20 = 0.2;
@@ -32,24 +33,27 @@ export default function Basket({basketItems,onAdd,onRemove,handleSumPrice}) {
 	handleSumPrice(sumPrice);
 };
 
-if(sumPrice > 0) {
-	if(isChecked20){
-		sumPrice = sumPrice - (sumPrice * off20);			
-	};	
-	if(isChecked5 && !isChecked20EUR){
+
+	if(sumPrice > 0) {
+		if(isChecked20){
+			sumPrice = sumPrice - (sumPrice * off20);			
+		}	
+		if(isChecked5 && !isChecked20EUR){
+			sumPrice = sumPrice - (sumPrice * off5);
+		}	
+		if(isChecked20EUR && sumPrice > off20Eur){
+			sumPrice = sumPrice - off20Eur;
+		}
+		if(isChecked20EUR && isChecked5  && sumPrice > off20Eur){
+			initialSum = initialSum - off20Eur;
+			sumPrice = initialSum - (initialSum * off5);
+		}
+		if (isChecked20EUR && isChecked5 && sumPrice < off20Eur){
 		sumPrice = sumPrice - (sumPrice * off5);
-	};	
-	if(isChecked20EUR && sumPrice > off20Eur){
-		sumPrice = sumPrice - off20Eur;
+		}
 	}
-	if(isChecked20EUR && isChecked5  && sumPrice > off20Eur){
-		initialSum = initialSum - off20Eur;
-		sumPrice = initialSum - (initialSum * off5);
-	}
-	if (isChecked20EUR && isChecked5 && sumPrice < off20Eur){
-	sumPrice = sumPrice - (sumPrice * off5);
-	};
-};
+
+
 
 	return (
 		<div className='basket-container'>
