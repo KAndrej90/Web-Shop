@@ -170,7 +170,7 @@ nav {
 		.price-card{
 			margin: 0 auto;
 			width: 40em;
-			height: 10.5em;
+			// height: 10.5em;
 			padding: 1em;
 			gap:1em;
 			box-shadow: $shadow;
@@ -192,22 +192,32 @@ nav {
 					gap: 0.5em;
 					margin-left: 1em;
 				}
-				.five-off{
-					margin-left: 0.6em;
+				
+			};
+			
+			.coupon-btn{
+			 width: 15px;
+			 height: 15px;
+			 
 			}
-		};
 
-		.checkout-btn {
+		.checkout-div {
 			
 			display: flex;
-			justify-content: center;
+			justify-content: space-between;
+			align-items: center;
+			button{
+				width: 20em;
+			}
+			
+			
 		};
 
 		button{
 			border: none;
 			border-radius: 1em;
 			height: 2em;
-			width: 10em;
+			width: 6em;
 			background-color: $base-color;
 			color: white;
 			cursor: pointer;
@@ -268,6 +278,9 @@ nav {
 		.alert-btn:hover {
 			background-color: $effect-color;
 		};
+		.form-error-msg{
+			color: $effect-color;
+		}
 	};
 };
 	
@@ -337,12 +350,22 @@ nav {
 			align-items: center;
 			.price-card{
 				width: 18em;
-				height: 23em;
+				// height: 23.5em;
 				display: flex;
 				flex-direction: column;
+				.coupon-btns{
+					display: flex;
+					flex-direction: column;
+					justify-items: start;
+					align-items:baseline;
+				}
 			};
-			div{
+			.checkout-div{
+				flex-direction: column;
 				width: 15em;
+				button{
+					margin-left: 1em;
+				}
 			};	
 		};
 	};

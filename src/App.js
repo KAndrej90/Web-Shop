@@ -11,7 +11,18 @@ import {items, quantityDiscounts} from './Data/Data';
 
 
 export default function App() {
-
+  // export const quantityDiscounts = [
+  //   {
+  //     id: 2,
+  //     quantity: 3,
+  //     discount: 9.97
+  //   },
+  //   {
+  //     id: 4,
+  //     quantity: 2,
+  //     discount: 4.98
+  //   }
+  // ];
   const [data, setData] = useState(items);
   const [basketItems,setBasketItems]=useState([]);
   const [totalSum, setTotalSum]=useState('');
@@ -21,9 +32,10 @@ export default function App() {
     if(found) {
       let newQuantity = found.quantity + 1;
       let forDiscount = quantityDiscounts.find(x => x.id === found.id);
-      let discount = 0;
+      let discount = 0;    
       if(forDiscount && forDiscount.quantity <= newQuantity){
-        discount = forDiscount.discount;
+        const discountMultiplier = Math.floor (newQuantity / forDiscount.quantity);
+        discount = forDiscount.discount * discountMultiplier;
       };
       setBasketItems(
         basketItems.map((x)=>
@@ -43,12 +55,9 @@ export default function App() {
     let newQuantity = found.quantity - 1;
     let discount = 0;
     if(forDiscount) {
-      discount = forDiscount.discount;
-      if(forDiscount && forDiscount.quantity > newQuantity){
-       discount = 0; 
-      };
-    };
-
+        const discountMultiplier = Math.floor (newQuantity / forDiscount.quantity);
+        discount = forDiscount.discount * discountMultiplier;
+  };
     if(found.quantity===1){
       setBasketItems(
         basketItems.filter((x)=>

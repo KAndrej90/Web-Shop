@@ -220,7 +220,6 @@ nav div button {
 .basket-container .total-price .price-card {
   margin: 0 auto;
   width: 40em;
-  height: 10.5em;
   padding: 1em;
   gap: 1em;
   -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -255,24 +254,32 @@ nav div button {
   margin-left: 1em;
 }
 
-.basket-container .total-price form .five-off {
-  margin-left: 0.6em;
+.basket-container .total-price .coupon-btn {
+  width: 15px;
+  height: 15px;
 }
 
-.basket-container .total-price .checkout-btn {
+.basket-container .total-price .checkout-div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.basket-container .total-price .checkout-div button {
+  width: 20em;
 }
 
 .basket-container .total-price button {
   border: none;
   border-radius: 1em;
   height: 2em;
-  width: 10em;
+  width: 6em;
   background-color: #118dd6;
   color: white;
   cursor: pointer;
@@ -341,6 +348,10 @@ nav div button {
 
 .checkout-container form .alert-btn:hover {
   background-color: orangered;
+}
+
+.checkout-container form .form-error-msg {
+  color: orangered;
 }
 
 .order-container {
@@ -425,7 +436,6 @@ nav div button {
   }
   .basket-container .total-price .price-card {
     width: 18em;
-    height: 23em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -434,8 +444,28 @@ nav div button {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .basket-container .total-price div {
+  .basket-container .total-price .price-card .coupon-btns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    justify-items: start;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+  }
+  .basket-container .total-price .checkout-div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     width: 15em;
+  }
+  .basket-container .total-price .checkout-div button {
+    margin-left: 1em;
   }
   .checkout-container {
     width: 17em;

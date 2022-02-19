@@ -8,31 +8,84 @@ export default function Basket({basketItems,onAdd,onRemove,handleSumPrice}) {
 	let off20 = 0.2;
 	let off5= 0.05;
 	let off20Eur= 20;
+	let a='20%OFF';
+	let b ='5%OFF';
+	let c ='20EUROFF';
 	const className = basketItems[0] ? 'total-price' : 'hiden';
 	
+	// const [isChecked20, setIsChecked20] = useState(false);
+	// const [isChecked5, setIsChecked5] = useState(false);
+	// const [isChecked20EUR, setIsChecked20EUR] = useState(false);
+
 	const [isChecked20, setIsChecked20] = useState(false);
 	const [isChecked5, setIsChecked5] = useState(false);
 	const [isChecked20EUR, setIsChecked20EUR] = useState(false);
+	const [couponName,setCouponName] = useState ('')
+
 
 	let sumPrice = basketItems.reduce ((a, currentItem) => a + (currentItem.price * currentItem.quantity - currentItem.discount), 0);
 	let initialSum = sumPrice;
 
-	
-	const handleOnChange20 = () => {
-    setIsChecked20 (!isChecked20);
-  };
+	console.log('on load ' + couponName);
 
-	const handleOnChange5 = () => {
-    setIsChecked5(!isChecked5);		
-  };
+	const changeCoupon =(e)=>{
+		 setCouponName  (e.target.value);
+		 console.log(couponName)
+	};
 
-	const handleOnChange20EUR = () => {
-    setIsChecked20EUR(!isChecked20EUR);
+const applyCoupon =()=>{
+
+	if(couponName === '20%OFF'){
+		if(isChecked20EUR===false && isChecked5 === false){
+		setIsChecked20 (true);
+		setCouponName('');
+		}	 
+		else {alert('This promo code cannot be used in conjuction with other codes')
+		setCouponName('')
+		};
+		return;
+	};
+	if(couponName === '5%OFF'){
+		if(isChecked20===false){
+			setIsChecked5 (true);
+			setCouponName('');
+		} 
+		else {alert('Usage of promo code 20%OFF cannot be used in conjuction with other codes')
+		setCouponName('')
+		};
+		return;
+	};
+	if(couponName === '20EUROFF'){	
+		if(isChecked20===false){
+			setIsChecked20EUR (true);
+			setCouponName('');
+		}	
+		else {alert('Usage of promo code 20%OFF cannot be used in conjuction with other codes')
+		setCouponName('')
+		};
+		return;
 	}
-  const submitSumPrice=()=>{
-	handleSumPrice(sumPrice);
+	else  {
+	setCouponName('');
+	alert('Invalid coupon name');
+	};
 };
 
+ const removeCoupon20 =()=>{
+	 setIsChecked20(false)
+ };
+
+ const removeCoupon5 =()=>{
+	setIsChecked5(false)
+	};
+
+	const removeCoupon20EUR =()=>{
+	setIsChecked20EUR(false)
+	};
+
+  const submitSumPrice=()=>{
+	handleSumPrice(sumPrice);
+	};
 
 	if(sumPrice > 0) {
 		if(isChecked20){
@@ -50,11 +103,8 @@ export default function Basket({basketItems,onAdd,onRemove,handleSumPrice}) {
 		}
 		if (isChecked20EUR && isChecked5 && sumPrice < off20Eur){
 		sumPrice = sumPrice - (sumPrice * off5);
-		}
-	}
-
-
-
+		}	
+	};
 	return (
 		<div className='basket-container'>
 			<div className='basket'>
@@ -85,30 +135,38 @@ export default function Basket({basketItems,onAdd,onRemove,handleSumPrice}) {
 			<div className={className}>
 				<div className='price-card'>
 					<form>
-						<div>
-							<label htmlFor='off20'>20OFF</label>
-							<input type='checkbox' id="off20" onChange={handleOnChange20} disabled={isChecked5 || isChecked20EUR}></input>
-							<p> 20% off final cost - cannot be used in conjunction with other codes</p>
+						<div className='coupon-btns'>
+						<input value={couponName} onChange={changeCoupon}></input>
+							<button type="button"  className='add-coupon-btn' onClick={applyCoupon}> Add coupon</button>
+							{ isChecked20 && 
+								<div>
+								<span>20%OFF</span>
+								<button type="button" className='coupon-btn' onClick={removeCoupon20}> x </button>
+								</div>}
+							{ isChecked5 && <div>
+								<span>5%OFF</span>
+								<button type="button" className='coupon-btn' onClick={removeCoupon5}> x </button>
+							</div>}
+							{ isChecked20EUR && 
+								<div>
+								<span>20EUROFF</span>
+								<button type="button" className='coupon-btn' onClick={removeCoupon20EUR}> x </button>
+								</div>}
 						</div>
-						<div>
-							<label htmlFor='off05'>5OFF </label>
-							<input type='checkbox' id="off05" onChange={handleOnChange5} disabled={isChecked20} className='five-off'></input>
-							<p> 5% off final cost - can be used in conjunction with other codes</p>
-						</div>
-						<div>
-							<label htmlFor='20Eur'>20EUR </label>
-							<input type='checkbox' id='20Eur' onChange={handleOnChange20EUR} disabled={isChecked20 &&  sumPrice > off20Eur}></input>
-							<p>- 20EUR off final cost - can be used in conjunction with other codes</p>
-						</div>
+						<p>20%OFF - 20% of final cost - cannot be used in conjunction with other codes</p>
+						<p>5%OFF - 5 % of final cost - can be used in conjunction with other codes</p>
+						<p>20EUROFF -20 EUR of final cost - can be used in conjunction with other codes</p>
 					</form>
 					<hr></hr>
+					<div className='checkout-div'>
 					<h3>Total price: {sumPrice.toFixed(2)} €</h3>
-					<div className='checkout-btn'>
+					
 						<button onClick={()=>{
 								submitSumPrice() 
 								navigate('/checkout')}}
 								> Checkout
 						</button>
+					
 					</div>
 				</div>
 			</div>
